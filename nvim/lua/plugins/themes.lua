@@ -1,30 +1,39 @@
 return {
   -- vscode
-  -- {
-  --   "Mofiqul/vscode.nvim",
-  --   lazy = true,
-  --   opts = {
-  --     colorscheme = "vscode",
-  --     transparent = true,
-  --   },
-  -- },
+  {
+    "Mofiqul/vscode.nvim",
+    lazy = true,
+    opts = {
+      colorscheme = "vscode",
+      transparent = true,
+    },
+  },
 
   -- kanagawa
-  -- {
-  --   "rebelot/kanagawa.nvim",
-  --   -- lazy = true,
-  --   opts = {
-  --     colorscheme = "kanagawa",
-  --   },
-  --   config = function()
-  --     require("kanagawa").setup({
-  --       transparent = true,
-  --       keywordStyle = {
-  --         italic = false,
-  --       },
-  --     })
-  --   end,
-  -- },
+  {
+    "rebelot/kanagawa.nvim",
+    lazy = true,
+    opts = {
+      colorscheme = "kanagawa",
+    },
+    config = function()
+      require("kanagawa").setup({
+        transparent = true,
+        keywordStyle = {
+          italic = false,
+        },
+      })
+    end,
+  },
+
+  {
+    "rose-pine/neovim",
+    lazy = true,
+    name = "rose-pine",
+    opts = {
+      colorscheme = "rose-pine",
+    },
+  },
 
   -- catppuccin
   {
@@ -73,7 +82,10 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "catppuccin",
+      colorscheme = "tokyonight-night",
+      -- colorscheme = "vscode",
+      -- colorscheme = "catppuccin",
+      -- colorscheme = "kanagawa",
     },
   },
 }

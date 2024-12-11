@@ -21,7 +21,8 @@ keymap.set("n", "<leader>q", ":bdelete<Return>", { desc = "[Q]uit buffer" })
 keymap.del("n", "<leader>wd")
 keymap.set("n", "<leader>Wd", "<C-W>c", { desc = "Delete Window", remap = true })
 keymap.del("n", "<leader>wm")
-LazyVim.toggle.map("<leader>Wm", LazyVim.toggle.maximize)
+
+LazyVim.ui.maximize():map("<leader>Wm")
 
 keymap.set(
   "n",
@@ -37,3 +38,13 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 vim.keymap.set("n", "Q", "<nop>")
 
 -- vim.keymap.set("n", "<leader>ge", "oif err != nil {<CR>}<Esc>Oreturn err<Esc>")
+
+vim.keymap.set("n", "<leader>bc", function()
+  local bufs = vim.api.nvim_list_bufs()
+  local current_buf = vim.api.nvim_get_current_buf()
+  for _, i in ipairs(bufs) do
+    if i ~= current_buf then
+      vim.api.nvim_buf_delete(i, {})
+    end
+  end
+end, { desc = "Clear all buffers" })

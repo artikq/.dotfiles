@@ -8,7 +8,7 @@ return {
       "TelescopePrompt",
       "noice",
       "neo-tree",
-      "mini-files",
+      "minifiles",
       "mini.files",
       "dashboard",
       "alpha",
@@ -17,9 +17,20 @@ return {
       "DressingInput",
       "",
     },
+    -- handle = {
+    --   color = colors.orange,
+    -- },
     handlers = {
       cursor = false,
       gitsigns = true,
     },
+    -- marks = {
+    --   Search = { color = colors.orange },
+    --   Error = { color = colors.error },
+    --   Warn = { color = colors.warning },
+    --   Info = { color = colors.info },
+    --   Hint = { color = colors.hint },
+    --   Misc = { color = colors.purple },
+    -- },
   },
 }

@@ -1,3 +1,5 @@
+vim.o.background = "dark"
+
 return {
   -- vscode
   {
@@ -5,35 +7,38 @@ return {
     lazy = true,
     opts = {
       colorscheme = "vscode",
-      transparent = true,
-    },
-  },
-
-  -- kanagawa
-  {
-    "rebelot/kanagawa.nvim",
-    lazy = true,
-    opts = {
-      colorscheme = "kanagawa",
+      -- transparent = true,
     },
     config = function()
-      require("kanagawa").setup({
-        transparent = true,
-        keywordStyle = {
-          italic = false,
-        },
-      })
+      vim.o.background = "dark"
     end,
   },
 
-  {
-    "rose-pine/neovim",
-    lazy = true,
-    name = "rose-pine",
-    opts = {
-      colorscheme = "rose-pine",
-    },
-  },
+  -- kanagawa
+  -- {
+  --   "rebelot/kanagawa.nvim",
+  --   lazy = true,
+  --   opts = {
+  --     colorscheme = "kanagawa",
+  --   },
+  --   config = function()
+  --     require("kanagawa").setup({
+  --       transparent = true,
+  --       keywordStyle = {
+  --         italic = false,
+  --       },
+  --     })
+  --   end,
+  -- },
+
+  -- {
+  --   "rose-pine/neovim",
+  --   lazy = true,
+  --   name = "rose-pine",
+  --   opts = {
+  --     colorscheme = "rose-pine",
+  --   },
+  -- },
 
   -- catppuccin
   {
@@ -41,6 +46,7 @@ return {
     lazy = true,
     name = "catppuccin",
     opts = {
+      flavour = "mocha",
       integrations = {
         aerial = true,
         alpha = true,
@@ -76,7 +82,59 @@ return {
         treesitter_context = true,
         which_key = true,
       },
-      transparent_background = true,
+      transparent_background = false,
+
+      -- color_overrides = {
+      --   all = {
+      --     -- this 16 colors are changed to onedark
+      --     base = "#282c34",
+      --     mantle = "#353b45",
+      --     surface0 = "#3e4451",
+      --     surface1 = "#545862",
+      --     surface2 = "#565c64",
+      --     text = "#abb2bf",
+      --     rosewater = "#b6bdca",
+      --     lavender = "#c8ccd4",
+      --     red = "#e06c75",
+      --     peach = "#d19a66",
+      --     yellow = "#e5c07b",
+      --     green = "#98c379",
+      --     teal = "#56b6c2",
+      --     blue = "#61afef",
+      --     mauve = "#c678dd",
+      --     flamingo = "#be5046",
+      --
+      --     -- now patching extra palettes
+      --     maroon = "#e06c75",
+      --     sky = "#d19a66",
+      --
+      --     -- extra colors not decided what to do
+      --     pink = "#F5C2E7",
+      --     sapphire = "#74C7EC",
+      --
+      --     subtext1 = "#BAC2DE",
+      --     subtext0 = "#A6ADC8",
+      --     overlay2 = "#9399B2",
+      --     overlay1 = "#7F849C",
+      --     overlay0 = "#6C7086",
+      --
+      --     crust = "#11111B",
+      --   },
+      -- },
+    },
+  },
+  {
+    "folke/tokyonight.nvim",
+    opts = {
+      -- transparent = true,
+      -- styles = {
+      --   sidebars = "transparent",
+      --   floats = "transparent",
+      -- },
+      lualine_bold = true,
+      on_colors = function(c)
+        c.bg_dark = "#0e0e0e"
+      end,
     },
   },
   {

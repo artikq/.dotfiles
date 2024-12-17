@@ -2,21 +2,24 @@ return {
   {
     "nvim-lualine/lualine.nvim",
     event = "VeryLazy",
+    enabled = true,
     opts = function()
       local lualine_require = require("lualine_require")
       lualine_require.require = require
 
       local icons = LazyVim.config.icons
-
+      vim.o.laststatus = 0
       local opts = {
         options = {
           icons_enabled = true,
           component_separators = "|",
           section_separators = "",
           globalstatus = vim.o.laststatus == 3,
-          disabled_filetypes = { statusline = { "dashboard", "alpha", "ministarter", "snacks_dashboard" } },
-          theme = "tokyonight",
+          disabled_filetypes = { statusline = { "dashboard", "alpha", "ministarter", "snacks_dashboard", "minifiles" } },
+          -- theme = "tokyonight",
         },
+        -- sections = {},
+        -- inactive_sections = {},
         sections = {
           lualine_a = {
             {
@@ -32,6 +35,7 @@ return {
               cond = function()
                 return false
               end,
+              newfile_status = true,
             },
           },
 
@@ -58,18 +62,18 @@ return {
             },
           },
           lualine_y = {
-            {
-              function()
-                return "  " .. require("dap").status()
-              end,
-              cond = function()
-                return package.loaded["dap"] and require("dap").status() ~= ""
-              end,
-              color = function()
-                return LazyVim.ui.fg("Debug")
-              end,
-            },
-
+            -- {
+            --   function()
+            --     return "  " .. require("dap").status()
+            --   end,
+            --   cond = function()
+            --     return package.loaded["dap"] and require("dap").status() ~= ""
+            --   end,
+            --   color = function()
+            --     return LazyVim.ui.fg("Debug")
+            --   end,
+            -- },
+            --
             {
               "diagnostics",
               symbols = {

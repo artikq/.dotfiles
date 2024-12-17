@@ -22,7 +22,7 @@ keymap.del("n", "<leader>wd")
 keymap.set("n", "<leader>Wd", "<C-W>c", { desc = "Delete Window", remap = true })
 keymap.del("n", "<leader>wm")
 
-LazyVim.ui.maximize():map("<leader>Wm")
+-- LazyVim.ui.maximize():map("<leader>Wm")
 
 keymap.set(
   "n",
@@ -31,15 +31,15 @@ keymap.set(
   { desc = "Search And Replace The Word Under The Cursor" }
 )
 
-vim.keymap.set("n", "<C-d>", "<C-d>zz")
-vim.keymap.set("n", "<C-u>", "<C-u>zz")
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
-vim.keymap.set("n", "Q", "<nop>")
+keymap.set("n", "<C-d>", "<C-d>zz")
+keymap.set("n", "<C-u>", "<C-u>zz")
+keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+keymap.set("n", "Q", "<nop>")
 
 -- vim.keymap.set("n", "<leader>ge", "oif err != nil {<CR>}<Esc>Oreturn err<Esc>")
 
-vim.keymap.set("n", "<leader>bc", function()
+keymap.set("n", "<leader>bc", function()
   local bufs = vim.api.nvim_list_bufs()
   local current_buf = vim.api.nvim_get_current_buf()
   for _, i in ipairs(bufs) do

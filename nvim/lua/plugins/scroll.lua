@@ -18,7 +18,7 @@ return {
       "",
     },
     -- handle = {
-    --   color = colors.orange,
+    --   -- color = "#CE9178",
     -- },
     handlers = {
       cursor = false,

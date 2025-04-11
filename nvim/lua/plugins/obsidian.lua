@@ -22,6 +22,10 @@ return {
         name = "flow",
         path = "~/vaults/flow",
       },
+      {
+        name = "dev-notes",
+        path = "~/dev/notes",
+      },
     },
     disable_frontmatter = true,
   },

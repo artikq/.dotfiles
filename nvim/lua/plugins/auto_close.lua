@@ -1,6 +1,7 @@
 return {
   {
     "axkirillov/hbac.nvim",
+    enabled = false,
     config = true,
     opts = {
       autoclose = true, -- set autoclose to false if you want to close manually

@@ -19,3 +19,13 @@ autocmd("Filetype", {
   group = "mygroup",
   desc = "Don't continue comments with o and O",
 })
+
+local lsp_hacks = vim.api.nvim_create_augroup("LspHacks", { clear = true })
+-- disables warnings in .env files
+vim.api.nvim_create_autocmd({ "BufNewFile", "BufReadPost" }, {
+  group = lsp_hacks,
+  pattern = ".env*",
+  callback = function(e)
+    vim.diagnostic.enable(false, { bufnr = e.buf })
+  end,
+})

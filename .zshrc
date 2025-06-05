@@ -12,7 +12,7 @@ export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="robbyrussell"
 
 # Uncomment the following line to enable command auto-correction.
-ENABLE_CORRECTION="true"
+# ENABLE_CORRECTION="true"
 
 # Uncomment one of the following lines to change the auto-update behavior
 # zstyle ':omz:update' mode disabled  # disable automatic updates
@@ -48,7 +48,7 @@ ENABLE_CORRECTION="true"
 # "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 # or set a custom format using the strftime function format specifications,
 # see 'man strftime' for details.
-# HIST_STAMPS="mm/dd/yyyy"
+HIST_STAMPS="dd/mm/yyyy"
 
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
@@ -86,8 +86,8 @@ fi
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-alias zshconfig="code ~/.zshrc"
-alias ohmyzsh="code ~/.oh-my-zsh"
+alias zshconfig="nvim ~/.zshrc"
+alias ohmyzsh="nvim ~/.oh-my-zsh"
 # alias cd="z"
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
@@ -105,3 +105,20 @@ export PATH="$PATH:/Users/artikq/.local/bin"
 export PATH="$PATH:/Users/artikq/go/bin"
 
 source $(brew --prefix)/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+
+alias v="nvim"
+
+alias npmchecks="npm run build && npm run lint:fix && npx ts-unused-exports ./tsconfig.json"
+
+alias ts='sh ~/src/tmux-sessionizer/tmux-sessionizer'
+
+# gets current kb layout on MAC OS X
+curr_lang() { 
+  defaults read ~/Library/Preferences/com.apple.HIToolbox.plist AppleCurrentKeyboardLayoutInputSourceID | awk -F. '{print $4}' | while read output; do
+    case "$output" in
+      US) echo "US" ;;
+      RussianWin) echo "RU" ;;
+      *) echo "Unknown" ;;
+    esac
+  done
+};

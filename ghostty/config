@@ -1,1 +1,6 @@
 window-decoration = false
+font-size = 17.4
+theme = dark:catppuccin-mocha,light:catppuccin-latte
+window-padding-balance = false
+window-padding-y = 0
+window-padding-x = 0

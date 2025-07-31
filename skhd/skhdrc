@@ -9,7 +9,7 @@ alt - s: yabai -m display --focus west
 alt - g: yabai -m display --focus east
 
 # rotate layout clockwise
-shift + alt - r: yabai -m space --rotate 270
+# shift + alt - r: yabai -m space --rotate 270
 
 # flip along y-axis
 shift + alt - y: yabai -m space --mirror y-axis
@@ -49,7 +49,7 @@ shift + alt - 7: yabai -m window --space 7;
 ctrl + alt - r: yabai --restart-services
 ctrl + alt - s: skhd --restart-services
 
-alt - return: open -na /Applications/WezTerm.app
+alt - return: open -na /Applications/Ghostty.app
 # alt - return: wezterm start --cwd /Users/artikq/
 # alt - return: /Applications/kitty.app/Contents/MacOS/kitty -d ~
 # alt - return: open -na 'alacritty'`

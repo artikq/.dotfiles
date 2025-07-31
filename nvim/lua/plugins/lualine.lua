@@ -2,7 +2,7 @@ return {
   {
     "nvim-lualine/lualine.nvim",
     event = "VeryLazy",
-    enabled = true,
+    enabled = false,
     opts = function()
       local lualine_require = require("lualine_require")
       lualine_require.require = require

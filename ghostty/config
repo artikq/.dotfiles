@@ -4,3 +4,4 @@ theme = dark:catppuccin-mocha,light:catppuccin-latte
 window-padding-balance = false
 window-padding-y = 0
 window-padding-x = 0
+cursor-color = #F5E0DC

@@ -1,8 +1,19 @@
 return {
   {
+    "vimpostor/vim-tpipeline",
+    event = "VeryLazy",
+    dependencies = {
+      "nvim-lualine/lualine.nvim",
+    },
+    config = function()
+      vim.g.tpipeline_autoembed = 1
+      vim.g.tpipeline_clearstl = 1
+    end,
+  },
+  {
     "nvim-lualine/lualine.nvim",
     event = "VeryLazy",
-    enabled = false,
+    enabled = true,
     opts = function()
       local lualine_require = require("lualine_require")
       lualine_require.require = require
@@ -16,7 +27,6 @@ return {
           section_separators = "",
           globalstatus = vim.o.laststatus == 3,
           disabled_filetypes = { statusline = { "dashboard", "alpha", "ministarter", "snacks_dashboard", "minifiles" } },
-          -- theme = "tokyonight",
           theme = "catppuccin",
         },
         -- sections = {},
@@ -24,20 +34,27 @@ return {
         sections = {
           lualine_a = {
             {
-              "buffers",
-              show_modified_status = true, -- Shows indicator when the buffer is modified.
-              use_mode_colors = true,
-            },
-          },
-          lualine_b = {},
-          lualine_c = {
-            {
               "filename",
-              cond = function()
-                return false
-              end,
-              newfile_status = true,
+              -- newfile_status = true,
+              file_status = true,
             },
+            --   {
+
+            --     "buffers",
+            --     show_modified_status = true, -- Shows indicator when the buffer is modified.
+            --     use_mode_colors = true,
+            --     show_filename_only = true, -- Shows shortened relative path when set to false.
+            --   },
+          },
+          lualine_b = { "diagnostics" },
+          lualine_c = {
+            -- {
+            --   "filename",
+            --   cond = function()
+            --     return false
+            --   end,
+            --   newfile_status = true,
+            -- },
           },
 
           lualine_x = {
@@ -50,40 +67,82 @@ return {
             --   cond = require("noice").api.status.command.has,
             --   color = { fg = "#ff9e64" },
             -- },
+            -- {
+            --   require("noice").api.status.mode.get,
+            --   cond = require("noice").api.status.mode.has,
+            --   color = { fg = "#ff9e64" },
+            -- },
+            -- {
+            --   require("noice").api.status.search.get,
+            --   cond = require("noice").api.status.search.has,
+            --   color = { fg = "#ff9e64" },
+            -- },
+
+            Snacks.profiler.status(),
+            -- {
+            --   function() return require("noice").api.status.command.get() end,
+            --   cond = function() return package.loaded["noice"] and require("noice").api.status.command.has() end,
+            --   color = function() return { fg = Snacks.util.color("Statement") } end,
+            -- },
+
             {
-              -- stylua: ignore
-              require("noice").api.status.mode.get,
-              cond = require("noice").api.status.mode.has,
-              color = { fg = "#ff9e64" },
+              function()
+                return require("noice").api.status.mode.get()
+              end,
+              cond = function()
+                return package.loaded["noice"] and require("noice").api.status.mode.has()
+              end,
+              color = function()
+                return { fg = Snacks.util.color("Constant") }
+              end,
             },
             {
-              require("noice").api.status.search.get,
-              cond = require("noice").api.status.search.has,
-              color = { fg = "#ff9e64" },
+              function()
+                return "  " .. require("dap").status()
+              end,
+              cond = function()
+                return package.loaded["dap"] and require("dap").status() ~= ""
+              end,
+              color = function()
+                return { fg = Snacks.util.color("Debug") }
+              end,
+            },
+            {
+              require("lazy.status").updates,
+              cond = require("lazy.status").has_updates,
+              color = function()
+                return { fg = Snacks.util.color("Special") }
+              end,
+            },
+            {
+              "diff",
+              symbols = {
+                added = icons.git.added,
+                modified = icons.git.modified,
+                removed = icons.git.removed,
+              },
+              source = function()
+                local gitsigns = vim.b.gitsigns_status_dict
+                if gitsigns then
+                  return {
+                    added = gitsigns.added,
+                    modified = gitsigns.changed,
+                    removed = gitsigns.removed,
+                  }
+                end
+              end,
             },
           },
           lualine_y = {
             -- {
-            --   function()
-            --     return "  " .. require("dap").status()
-            --   end,
-            --   cond = function()
-            --     return package.loaded["dap"] and require("dap").status() ~= ""
-            --   end,
-            --   color = function()
-            --     return LazyVim.ui.fg("Debug")
-            --   end,
+            --   "diagnostics",
+            --   symbols = {
+            --     error = icons.diagnostics.error,
+            --     warn = icons.diagnostics.warn,
+            --     info = icons.diagnostics.info,
+            --     hint = icons.diagnostics.hint,
+            --   },
             -- },
-            --
-            {
-              "diagnostics",
-              symbols = {
-                error = icons.diagnostics.error,
-                warn = icons.diagnostics.warn,
-                info = icons.diagnostics.info,
-                hint = icons.diagnostics.hint,
-              },
-            },
           },
           lualine_z = {
             -- {
@@ -98,7 +157,6 @@ return {
           },
         },
       }
-
       return opts
     end,
   },

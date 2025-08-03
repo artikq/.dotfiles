@@ -18,13 +18,17 @@ return {
   },
   opts = {
     workspaces = {
+      -- {
+      --   name = "flow",
+      --   path = "~/vaults/flow",
+      -- },
+      -- {
+      --   name = "dev-notes",
+      --   path = "~/dev/notes",
+      -- },
       {
-        name = "flow",
-        path = "~/vaults/flow",
-      },
-      {
-        name = "dev-notes",
-        path = "~/dev/notes",
+        name = "dev-notes-tools",
+        path = "~/dev/tools/notes",
       },
     },
     disable_frontmatter = true,

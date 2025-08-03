@@ -1,0 +1,6 @@
+[global]
+log_filter="^$"
+load_dotenv=true
+
+[whitelist]
+prefix = [ "~/dev" ]

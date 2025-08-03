@@ -60,3 +60,5 @@ vim.keymap.set("n", "<leader>k", function()
     end,
   })
 end)
+
+vim.api.nvim_set_keymap("t", "<ESC><ESC>", "<C-\\><C-n>", { noremap = true })

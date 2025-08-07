@@ -61,4 +61,5 @@ vim.keymap.set("n", "<leader>k", function()
   })
 end)
 
+keymap.set("n", "<C-f>", "<cmd>silent !tmux neww ~/src/tmux-sessionizer/tmux-sessionizer<CR>")
 vim.api.nvim_set_keymap("t", "<ESC><ESC>", "<C-\\><C-n>", { noremap = true })

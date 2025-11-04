@@ -39,16 +39,6 @@ keymap.set("n", "Q", "<nop>")
 
 -- vim.keymap.set("n", "<leader>ge", "oif err != nil {<CR>}<Esc>Oreturn err<Esc>")
 
-keymap.set("n", "<leader>bc", function()
-  local bufs = vim.api.nvim_list_bufs()
-  local current_buf = vim.api.nvim_get_current_buf()
-  for _, i in ipairs(bufs) do
-    if i ~= current_buf then
-      vim.api.nvim_buf_delete(i, {})
-    end
-  end
-end, { desc = "Clear all buffers" })
-
 vim.keymap.set("n", "<leader>k", function()
   vim.diagnostic.config({ virtual_lines = { current_line = true }, virtual_text = false })
 

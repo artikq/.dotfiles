@@ -1,5 +1,5 @@
 return {
-  "echasnovski/mini.files",
+  "nvim-mini/mini.files",
   lazy = true,
   keys = {
     {
@@ -10,7 +10,7 @@ return {
       desc = "Open mini.files (directory of current file)",
     },
     {
-      "<leader>E",
+      "<leader>fm",
       function()
         require("mini.files").open(vim.loop.cwd(), true)
       end,

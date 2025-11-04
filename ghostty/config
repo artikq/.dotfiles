@@ -1,10 +1,11 @@
 window-decoration = false
 font-size = 18.7
-theme = dark:catppuccin-mocha,light:catppuccin-latte
-window-padding-balance = true
+theme = Catppuccin Mocha
+window-padding-balance = false
 window-padding-y = 0
 window-padding-x = 0
 keybind = super+w=quit
 quit-after-last-window-closed=true
 cursor-text = #000000
 cursor-style-blink=false
+keybind = shift+enter=text:\x1b\r

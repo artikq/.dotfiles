@@ -53,3 +53,10 @@ end)
 
 keymap.set("n", "<C-f>", "<cmd>silent !tmux neww ~/src/tmux-sessionizer/tmux-sessionizer<CR>")
 vim.api.nvim_set_keymap("t", "<ESC><ESC>", "<C-\\><C-n>", { noremap = true })
+
+function insertFullPath()
+  local filepath = vim.fn.expand("%")
+  vim.fn.setreg("+", filepath) -- write to clippoard
+end
+
+vim.keymap.set("n", "<leader>by", insertFullPath, { noremap = true, silent = true, desc = "copy current buffer path" })

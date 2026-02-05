@@ -17,6 +17,7 @@ return {
     -- see below for full list of optional dependencies 👇
   },
   opts = {
+    legacy_commands = false,
     workspaces = {
       -- {
       --   name = "flow",
@@ -31,7 +32,9 @@ return {
         path = "~/dev/tools/notes",
       },
     },
-    disable_frontmatter = true,
+    frontmatter = {
+      enabled = false,
+    },
     statusline = {
       enabled = false,
     },
@@ -39,6 +42,9 @@ return {
       enabled = true,
       create_new = true,
       order = { " ", "x", "~", "!" },
+    },
+    footer = {
+      enabled = false,
     },
   },
 }

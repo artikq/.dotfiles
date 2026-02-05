@@ -9,3 +9,4 @@ quit-after-last-window-closed=true
 cursor-text = #000000
 cursor-style-blink=false
 keybind = shift+enter=text:\x1b\r
+macos-option-as-alt=true

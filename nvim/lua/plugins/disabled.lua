@@ -10,7 +10,7 @@ return {
       },
     },
   },
-  { "nvim-mini/mini.pairs ", enabled = false },
+  { "nvim-mini/mini.pairs", enabled = false },
   { "hrsh7th/nvim-cmp", enabled = false },
   -- {
   --   "mfussenegger/nvim-lint",

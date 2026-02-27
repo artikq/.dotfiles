@@ -21,3 +21,4 @@ _darcs
 ^/charybdis\.layout\.json
 ^/\.stow-local-ignore
 ^/macos
+^/vendor

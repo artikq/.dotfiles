@@ -90,7 +90,6 @@ export PATH="$PATH:$HOME/go/bin"
 
 
 alias v="nvim"
-alias ts='sh ~/src/tmux-sessionizer/tmux-sessionizer'
 
 eval "$(direnv hook zsh)"
 eval "$(zoxide init zsh)"

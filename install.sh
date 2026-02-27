@@ -10,13 +10,12 @@ fi
 
 chmod +x "$DOTFILES_DIR/install.sh"
 
-# Ensure stowme alias in .zlocaloverride (not tracked by git)
+# Write aliases to .zlocaloverride (not tracked by git)
 LOCALRC="$DOTFILES_DIR/.zlocaloverride"
-ALIAS_LINE="alias stowme='$DOTFILES_DIR/install.sh'"
-if grep -q "^alias stowme=" "$LOCALRC" 2>/dev/null; then
-  sed -i '' "s|^alias stowme=.*|$ALIAS_LINE|" "$LOCALRC"
-else
-  echo "$ALIAS_LINE" >> "$LOCALRC"
-fi
+cat > "$LOCALRC" <<EOF
+alias stowme='$DOTFILES_DIR/install.sh'
+alias nvimc='cd $DOTFILES_DIR/.config/nvim && nvim'
+alias dotc='cd $DOTFILES_DIR && nvim'
+EOF
 
 stow -v --no-folding --dir="$PARENT_DIR" --target="$HOME" $ADOPT "$PKG_NAME"

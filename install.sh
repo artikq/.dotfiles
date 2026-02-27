@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 DOTFILES_DIR="$(cd "$(dirname "$0")" && pwd)"
-PARENT_DIR="$(dirname "$DOTFILES_DIR")"
-PKG_NAME="$(basename "$DOTFILES_DIR")"
 
 ADOPT=""
 if [ "$1" = "--adopt" ]; then

@@ -72,28 +72,34 @@ return {
             --   cond = require("noice").api.status.mode.has,
             --   color = { fg = "#ff9e64" },
             -- },
-            -- {
-            --   require("noice").api.status.search.get,
-            --   cond = require("noice").api.status.search.has,
-            --   color = { fg = "#ff9e64" },
-            -- },
-
-            Snacks.profiler.status(),
-            -- {
-            --   function() return require("noice").api.status.command.get() end,
-            --   cond = function() return package.loaded["noice"] and require("noice").api.status.command.has() end,
-            --   color = function() return { fg = Snacks.util.color("Statement") } end,
-            -- },
-
             {
               function()
-                return require("noice").api.status.mode.get()
+                local pattern = vim.fn.getreg("/")
+                if pattern == "" then
+                  return ""
+                end
+                local count = vim.fn.searchcount({ maxcount = 999 })
+                if count.total and count.total > 0 then
+                  return "/" .. pattern .. " [" .. count.current .. "/" .. count.total .. "]"
+                end
+                return "/" .. pattern
               end,
               cond = function()
-                return package.loaded["noice"] and require("noice").api.status.mode.has()
+                return vim.v.hlsearch == 1
+              end,
+              color = { fg = "#ff9e64" },
+            },
+
+            Snacks.profiler.status(),
+            {
+              function()
+                return require("noice").api.status.command.get()
+              end,
+              cond = function()
+                return package.loaded["noice"] and require("noice").api.status.command.has()
               end,
               color = function()
-                return { fg = Snacks.util.color("Constant") }
+                return { fg = Snacks.util.color("Statement") }
               end,
             },
             {

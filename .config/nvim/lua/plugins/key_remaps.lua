@@ -61,18 +61,4 @@ return {
       },
     },
   },
-
-  {
-    "folke/noice.nvim",
-    opts = {
-      messages = {
-        view_search = false,
-      },
-      lsp = {
-        signature = {
-          auto_open = { enabled = false },
-        },
-      },
-    },
-  },
 }

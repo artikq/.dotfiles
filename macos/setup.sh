@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+echo "Applying macOS defaults..."
 # defaults mac
 defaults write com.apple.dock autohide -bool true
 defaults write com.apple.dock "mru-spaces" -bool "false"

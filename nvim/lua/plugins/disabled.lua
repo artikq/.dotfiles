@@ -5,13 +5,18 @@ return {
     "akinsho/bufferline.nvim",
     enabled = false,
     opts = {
-      options = {
-        always_show_bufferline = true,
-      },
+      -- options = {
+      --   always_show_bufferline = true,
+      -- },
     },
   },
+  { "folke/noice.nvim", enabled = false },
   { "nvim-mini/mini.pairs", enabled = false },
   { "hrsh7th/nvim-cmp", enabled = false },
+  {
+    "smjonas/inc-rename.nvim",
+    enabled = false,
+  },
   -- {
   --   "mfussenegger/nvim-lint",
   --   enabled = false,

@@ -2,6 +2,18 @@ return {
   {
     "folke/snacks.nvim",
     opts = {
+      terminal = {
+        win = {
+          style = "terminal",
+          position = "right",
+        },
+      },
+      lazygit = {
+        win = {
+          style = "lazygit",
+          position = "float",
+        },
+      },
       picker = {
         sources = {
           files = {

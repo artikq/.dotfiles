@@ -60,3 +60,6 @@ function insertFullPath()
 end
 
 vim.keymap.set("n", "<leader>by", insertFullPath, { noremap = true, silent = true, desc = "copy current buffer path" })
+
+-- vim.keymap.set("n", "<leader>R", live_renam.map({ text = "", insert = true }), { desc = "LSP rename" })
+-- vim.keymap.set("n", "<leader>R", function() live_rename.rename({ text = "", insert = true }) end, { desc = "LSP rename" })

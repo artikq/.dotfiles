@@ -1,111 +1,99 @@
 vim.o.background = "dark"
 
 return {
-  -- catppuccin
   -- {
-  --   "catppuccin/nvim",
-  --   lazy = true,
-  --   name = "catppuccin",
-  --   opts = {
-  --     flavour = "mocha",
-  --     integrations = {
-  --       aerial = true,
-  --       alpha = true,
-  --       blink_cmp = true,
-  --       cmp = true,
-  --       dashboard = true,
-  --       bufferline = true,
-  --       flash = true,
-  --       fzf = true,
-  --       gitsigns = true,
-  --       headlines = true,
-  --       harpoon = true,
-  --       illuminate = true,
-  --       indent_blankline = { enabled = true },
-  --       lsp_trouble = true,
-  --       mason = true,
-  --       markdown = true,
-  --       mini = true,
-  --       native_lsp = {
-  --         enabled = true,
-  --         underlines = {
-  --           errors = { "undercurl" },
-  --           hints = { "undercurl" },
-  --           warnings = { "undercurl" },
-  --           information = { "undercurl" },
-  --         },
-  --       },
-  --       navic = { enabled = true, custom_bg = "lualine" },
-  --       neotest = true,
-  --       noice = true,
-  --       notify = true,
-  --       semantic_tokens = true,
-  --       treesitter = true,
-  --       treesitter_context = true,
-  --       which_key = true,
-  --     },
-  --     no_italic = true,
-  --     term_colors = true,
-  --     transparent_background = false,
-  --   },
-  -- },
-  -- {
-  --   "vague2k/vague.nvim",
-  --   -- config = function()
-  --   -- NOTE: you do not need to call setup if you don't want to.
-  --   --   require("vague").setup({
-  --   --     -- optional configuration here
-  --   --   })
-  --   -- end,
-  -- },
-  -- {
-  --   "rose-pine/neovim",
-  --   name = "rose-pine",
+  --   "projekt0n/github-nvim-theme",
+  --   name = "github-theme",
+  --   lazy = false,
   --   priority = 1000,
   --   opts = {
-  --     dark_variant = "moon",
-  --     styles = { italic = false },
-  --     palette = {
-  --       dawn = {
-  --         no_bg = "#faf4ed",
-  --         cursor_bg = "#000000",
-  --         cursor_fg = "#ffffff",
+  --     options = {
+  --       -- compile_path = vim.fn.stdpath("cache") .. "/github-theme",
+  --       -- compile_file_suffix = "_compiled",
+  --       hide_end_of_buffer = true,
+  --       hide_nc_statusline = true,
+  --       -- transparent = true,
+  --       terminal_colors = true,
+  --       -- dim_inactive = false,
+  --       module_default = true,
+  --       styles = {
+  --         comments = "NONE",
+  --         functions = "NONE",
+  --         keywords = "NONE",
+  --         variables = "NONE",
+  --         conditionals = "NONE",
+  --         constants = "NONE",
+  --         numbers = "NONE",
+  --         operators = "NONE",
+  --         strings = "NONE",
+  --         types = "NONE",
   --       },
-  --       moon = {
-  --         gold = "#f6d5a7",
-  --         foam = "#a1d1da",
-  --         iris = "#d9c7ef",
-  --         rose = "#ebbcba",
-  --         pine = "#437e91",
-  --         no_bg = "#000000",
-  --         cursor_bg = "#ffffff",
-  --         cursor_fg = "#000000",
+  --       inverse = {
+  --         match_paren = false,
+  --         visual = false,
+  --         search = false,
   --       },
+  --       darken = {
+  --         floats = true,
+  --         sidebars = {
+  --           enable = true,
+  --           list = {},
+  --         },
+  --       },
+  --       -- modules = {},
   --     },
-  --     highlight_groups = {
-  --       Normal = { bg = "no_bg" },
-  --       Cursor = { bg = "cursor_bg", fg = "cursor_fg" },
-  --       Directory = { fg = "foam", bold = false },
-  --       StatusLine = { bg = "surface", fg = "subtle" },
-  --       StatusLineTerm = { link = "StatusLine" },
-  --       StatusLineNC = { link = "StatusLine" },
-  --       --- gitsigns
-  --       StatusLineGitSignsAdd = { bg = "surface", fg = "pine" },
-  --       StatusLineGitSignsChange = { bg = "surface", fg = "gold" },
-  --       StatusLineGitSignsDelete = { bg = "surface", fg = "rose" },
-  --       --- diagnostics
-  --       StatusLineDiagnosticSignError = { bg = "surface", fg = "love" },
-  --       StatusLineDiagnosticSignWarn = { bg = "surface", fg = "gold" },
-  --       StatusLineDiagnosticSignInfo = { bg = "surface", fg = "foam" },
-  --       StatusLineDiagnosticSignHint = { bg = "surface", fg = "iris" },
-  --       StatusLineDiagnosticSignOk = { bg = "surface", fg = "pine" },
-  --     },
+  --     -- palettes = {},
+  --     -- specs = {},
+  --     -- groups = {},
   --   },
   -- },
   {
+    "sainnhe/everforest",
+    config = function()
+      vim.g.everforest_enable_italic = false
+      -- vim.cmd.colorscheme('everforest')
+    end,
+  },
+  {
+    "sainnhe/gruvbox-material",
+    config = function()
+      vim.g.gruvbox_material_enable_italic = false
+      -- vim.cmd.colorscheme('gruvbox-material')
+    end,
+  },
+
+  {
+    "https://codeberg.org/evergarden/nvim.git",
+    name = "evergarden",
+    opts = {
+      theme = {
+        variant = "winter", -- 'winter'|'fall'|'spring'|'summer'
+      },
+      editor = {
+        transparent_background = false,
+        -- sign = { color = "none" },
+        -- float = {
+        --   color = "mantle",
+        --   solid_border = false,
+        -- },
+        -- completion = {
+        --   color = "surface0",
+        -- },
+      },
+    },
+  },
+  {
+    "yonatan-perel/lake-dweller.nvim",
+    lazy = false,
+    priority = 1000,
+  },
+  {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "catppuccin",
+      colorscheme = "lake-dweller",
+      -- colorscheme = "evergarden",
+      -- colorscheme = "everforest",
+      -- colorscheme = "gruvbox-material",
     },
   },
 }

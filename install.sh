@@ -16,26 +16,26 @@ chmod +x "$DOTFILES_DIR/macos/init.sh"
 
 # OS-specific setup
 case "$(uname -s)" in
-  Darwin)
-    echo "Detected macOS..."
-    # Install Homebrew if not found
-    if ! command -v brew &>/dev/null; then
-      echo "Installing Homebrew..."
-      /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-      eval "$(/opt/homebrew/bin/brew shellenv)"
-    fi
-    "$DOTFILES_DIR/macos/brew.sh"
-    "$DOTFILES_DIR/macos/setup.sh"
-    "$DOTFILES_DIR/macos/init.sh"
-    ;;
-  Linux)
-    echo "Detected Linux..."
-    # TODO: add linux setup
-    ;;
-  *)
-    echo "Unsupported OS: $(uname -s)"
-    exit 1
-    ;;
+Darwin)
+  echo "Detected macOS..."
+  # Install Homebrew if not found
+  if ! command -v brew &>/dev/null; then
+    echo "Installing Homebrew..."
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+  fi
+  "$DOTFILES_DIR/macos/brew.sh"
+  "$DOTFILES_DIR/macos/setup.sh"
+  "$DOTFILES_DIR/macos/init.sh"
+  ;;
+Linux)
+  echo "Detected Linux..."
+  # TODO: add linux setup
+  ;;
+*)
+  echo "Unsupported OS: $(uname -s)"
+  exit 1
+  ;;
 esac
 
 # Common setup
@@ -44,15 +44,26 @@ git -C "$DOTFILES_DIR" submodule update --init --recursive
 
 chmod +x "$DOTFILES_DIR/vendor/tmux-sessionizer/tmux-sessionizer"
 
-echo "Writing local aliases..."
-# Write aliases to .zlocaloverride (not tracked by git)
+echo "Writing local overrides..."
+# Write .zlocaloverride (not tracked by git)
+# Platform-specific rc source
+PLATFORM_RC=""
+case "$(uname -s)" in
+Darwin) PLATFORM_RC='source "$HOME/.zmacrc"' ;;
+Linux) PLATFORM_RC='# TODO: source "$HOME/.zlinuxrc"' ;;
+esac
+
 LOCALRC="$DOTFILES_DIR/.zlocaloverride"
-cat > "$LOCALRC" <<EOF
+cat >"$LOCALRC" <<EOF
+# Dotfiles aliases
 alias stowme='$DOTFILES_DIR/install.sh'
 alias nvimc='cd $DOTFILES_DIR/.config/nvim && nvim'
 alias dotc='cd $DOTFILES_DIR && nvim'
 export PATH="\$PATH:$DOTFILES_DIR/vendor/tmux-sessionizer"
 alias ts='tmux-sessionizer'
+
+# Platform-specific
+$PLATFORM_RC
 EOF
 
 echo "Stowing dotfiles..."

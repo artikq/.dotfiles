@@ -10,6 +10,7 @@ fi
 
 # Ensure scripts are executable
 chmod +x "$DOTFILES_DIR/install.sh"
+chmod +x "$DOTFILES_DIR/stowme.sh"
 chmod +x "$DOTFILES_DIR/macos/brew.sh"
 chmod +x "$DOTFILES_DIR/macos/setup.sh"
 chmod +x "$DOTFILES_DIR/macos/init.sh"
@@ -45,28 +46,44 @@ git -C "$DOTFILES_DIR" submodule update --init --recursive
 chmod +x "$DOTFILES_DIR/vendor/tmux-sessionizer/tmux-sessionizer"
 
 echo "Writing local overrides..."
-# Write .zlocaloverride (not tracked by git)
-# Platform-specific rc source
+
+# Platform-specific sources
+PLATFORM_PROFILE=""
 PLATFORM_RC=""
 case "$(uname -s)" in
-Darwin) PLATFORM_RC='source "$HOME/.zmacrc"' ;;
-Linux) PLATFORM_RC='# TODO: source "$HOME/.zlinuxrc"' ;;
+Darwin)
+  PLATFORM_PROFILE='source "$HOME/.zmacprofile"'
+  PLATFORM_RC='source "$HOME/.zmacrc"'
+  ;;
+Linux)
+  PLATFORM_PROFILE='# TODO: source "$HOME/.zlinuxprofile"'
+  PLATFORM_RC='# TODO: source "$HOME/.zlinuxrc"'
+  ;;
 esac
 
+# Write .zlocalprofileoverride (not tracked by git)
+LOCALPROFILE="$DOTFILES_DIR/.zlocalprofileoverride"
+cat >"$LOCALPROFILE" <<EOF
+# Dotfiles PATH
+export PATH="\$PATH:$DOTFILES_DIR/vendor/tmux-sessionizer"
+
+# Platform-specific profile
+$PLATFORM_PROFILE
+EOF
+
+# Write .zlocaloverride (not tracked by git)
 LOCALRC="$DOTFILES_DIR/.zlocaloverride"
 cat >"$LOCALRC" <<EOF
 # Dotfiles aliases
-alias stowme='$DOTFILES_DIR/install.sh'
+alias stowme='$DOTFILES_DIR/stowme.sh'
 alias nvimc='cd $DOTFILES_DIR/.config/nvim && nvim'
 alias dotc='cd $DOTFILES_DIR && nvim'
-export PATH="\$PATH:$DOTFILES_DIR/vendor/tmux-sessionizer"
 alias ts='tmux-sessionizer'
 
-# Platform-specific
+# Platform-specific rc
 $PLATFORM_RC
 EOF
 
-echo "Stowing dotfiles..."
-stow -v --no-folding --dir="$PARENT_DIR" --target="$HOME" $ADOPT "$PKG_NAME"
+"$DOTFILES_DIR/stowme.sh" $ADOPT
 
 echo "Done!"

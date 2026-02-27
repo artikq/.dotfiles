@@ -10,15 +10,13 @@ fi
 
 chmod +x "$DOTFILES_DIR/install.sh"
 
-stow -v --no-folding --dir="$PARENT_DIR" --target="$HOME" $ADOPT "$PKG_NAME"
-
-# Ensure stowme alias points to this script in .zshrc
+# Ensure stowme alias in .zlocaloverride (not tracked by git)
+LOCALRC="$DOTFILES_DIR/.zlocaloverride"
 ALIAS_LINE="alias stowme='$DOTFILES_DIR/install.sh'"
-ZSHRC="$DOTFILES_DIR/.zshrc"
-if grep -q "^alias stowme=" "$ZSHRC" 2>/dev/null; then
-  sed -i '' "s|^alias stowme=.*|$ALIAS_LINE|" "$ZSHRC"
+if grep -q "^alias stowme=" "$LOCALRC" 2>/dev/null; then
+  sed -i '' "s|^alias stowme=.*|$ALIAS_LINE|" "$LOCALRC"
 else
-  sed -i '' "/^# Source platform-specific config/i\\
-$ALIAS_LINE\\
-" "$ZSHRC"
+  echo "$ALIAS_LINE" >> "$LOCALRC"
 fi
+
+stow -v --no-folding --dir="$PARENT_DIR" --target="$HOME" $ADOPT "$PKG_NAME"

@@ -102,3 +102,6 @@ alias :q='exit'
 
 # Source platform-specific config
 [ -f "$HOME/.zmacrc" ] && source "$HOME/.zmacrc"
+
+# Source local overrides (not tracked by git)
+[ -f "$HOME/.zlocaloverride" ] && source "$HOME/.zlocaloverride"

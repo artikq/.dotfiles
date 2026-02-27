@@ -1,0 +1,23 @@
+# Re-include stow defaults (creating this file overrides them)
+RCS
+.+,v
+CVS
+\.\#.+
+\.cvsignore
+\.svn
+_darcs
+\.hg
+\.git
+\.gitignore
+\.gitmodules
+.+~
+\#.*\#
+^/README.*
+^/LICENSE.*
+
+# Repo-specific exclusions
+^/install\.sh
+^/brew
+^/charybdis\.layout\.json
+^/\.stow-local-ignore
+^/macos

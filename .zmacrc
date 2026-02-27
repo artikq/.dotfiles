@@ -1,0 +1,29 @@
+# Mac-specific configuration
+
+# NVM (homebrew)
+[ -s "$(brew --prefix)/opt/nvm/nvm.sh" ] && . "$(brew --prefix)/opt/nvm/nvm.sh"
+[ -s "$(brew --prefix)/opt/nvm/etc/bash_completion" ] && . "$(brew --prefix)/opt/nvm/etc/bash_completion"
+
+# ZSH plugins (homebrew)
+source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $(brew --prefix)/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+
+# Podman/Docker
+export DOCKER_HOST=unix://$(podman machine inspect --format '{{.ConnectionInfo.PodmanSocket.Path}}')
+export TESTCONTAINERS_RYUK_DISABLED=true
+export TESTCONTAINERS_CHECKS_DISABLE=true
+
+# yabai
+function suyabai () {
+  SHA256=$(shasum -a 256 $(brew --prefix)/bin/yabai | awk "{print \$1;}")
+  if [ -f "/private/etc/sudoers.d/yabai" ]; then
+    sudo sed -i '' -e 's/sha256:[[:alnum:]]*/sha256:'${SHA256}'/' /private/etc/sudoers.d/yabai
+  else
+    echo "sudoers file does not exist yet"
+  fi
+}
+
+# Homebrew paths
+export PATH="$(brew --prefix)/opt/libpq/bin:$PATH"
+export PATH="$(brew --prefix)/opt/openjdk/bin:$PATH"

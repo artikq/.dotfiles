@@ -1,9 +1,5 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
-# eval "$(zoxide init zsh)"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -29,7 +25,9 @@ ZSH_THEME="robbyrussell"
 # DISABLE_LS_COLORS="true"
 
 # Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
+DISABLE_AUTO_TITLE="true"
+
+# export TERM=screen-256color
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 # You can also set it to another string to have that shown instead of the default red dots.
@@ -55,13 +53,13 @@ HIST_STAMPS="dd/mm/yyyy"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
+
 plugins=(
     git
-    zsh-autosuggestions
+    # zsh-autosuggestions
 )
 
 source $ZSH/oh-my-zsh.sh
-# eval "$(starship init zsh)"
 
 # User configuration
 
@@ -79,46 +77,28 @@ fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-alias zshconfig="nvim ~/.zshrc"
-alias ohmyzsh="nvim ~/.oh-my-zsh"
 # alias cd="z"
-source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # add nvm
 export NVM_DIR="$HOME/.nvm"
-[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && . "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "/opt/homebrew/opt/nvm/etc/bash_completion" ] && . "/opt/homebrew/opt/nvm/etc/bash_completion"  # This loads nvm bash_completion
 
-fdie() { ps aux | grep $1 | awk '{print $2}' | xargs kill -9 ;  };
+export fdie() { ps aux | grep $1 | awk '{print $2}' | xargs kill -9 ;  };
 alias die="fdie"
 
-# Created by `pipx` on 2024-06-03 07:26:41
-export PATH="$PATH:/Users/artikq/.local/bin"
-# Go bin
-export PATH="$PATH:/Users/artikq/go/bin"
+export PATH="$PATH:$HOME/.local/bin"
+export PATH="$PATH:$HOME/go/bin"
 
-source $(brew --prefix)/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 
 alias v="nvim"
-
-alias npmchecks="npm run build && npm run lint:fix && npx ts-unused-exports ./tsconfig.json"
-
 alias ts='sh ~/src/tmux-sessionizer/tmux-sessionizer'
 
-# gets current kb layout on MAC OS X
-curr_lang() { 
-  defaults read ~/Library/Preferences/com.apple.HIToolbox.plist AppleCurrentKeyboardLayoutInputSourceID | awk -F. '{print $4}' | while read output; do
-    case "$output" in
-      US) echo "US" ;;
-      RussianWin) echo "RU" ;;
-      *) echo "Unknown" ;;
-    esac
-  done
-};
+eval "$(direnv hook zsh)"
+eval "$(zoxide init zsh)"
+
+bindkey -s ^f "ts\n"
+alias ld="lazydocker"
+alias cctl='~/.cloud/cctl'
+alias :q='exit'
+
+# Source platform-specific config
+[ -f "$HOME/.zmacrc" ] && source "$HOME/.zmacrc"

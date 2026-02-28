@@ -7,6 +7,7 @@ vim.opt.undofile = true
 vim.g.snacks_animate = false
 
 vim.opt.laststatus = 0
+vim.opt.cmdheight = 0
 
 vim.cmd(
   ":set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz"

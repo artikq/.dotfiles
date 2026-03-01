@@ -6,7 +6,14 @@ local function run_in_terminal(cmd)
   end
   vim.defer_fn(function()
     local chan = vim.bo[term.buf].channel
-    vim.fn.chansend(chan, "\x03\x15\x0c" .. cmd .. "\n")
+    local is_windows = vim.fn.has("win32") == 1
+    local seq
+    if is_windows then
+      seq = "\x03\x0c" .. cmd .. "\r\n"
+    else
+      seq = "\x03\x15\x0c" .. cmd .. "\n"
+    end
+    vim.fn.chansend(chan, seq)
   end, is_new and 1000 or 100)
   term:show()
 end

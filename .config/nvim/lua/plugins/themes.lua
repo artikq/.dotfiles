@@ -47,45 +47,48 @@ return {
   --     -- groups = {},
   --   },
   -- },
-  {
-    "sainnhe/everforest",
-    config = function()
-      vim.g.everforest_enable_italic = false
-      -- vim.cmd.colorscheme('everforest')
-    end,
-  },
-  {
-    "sainnhe/gruvbox-material",
-    config = function()
-      vim.g.gruvbox_material_enable_italic = false
-      -- vim.cmd.colorscheme('gruvbox-material')
-    end,
-  },
+  -- {
+  --   "sainnhe/everforest",
+  --   config = function()
+  --     vim.g.everforest_enable_italic = false
+  --     -- vim.cmd.colorscheme('everforest')
+  --   end,
+  -- },
+  -- {
+  --   "sainnhe/gruvbox-material",
+  --   config = function()
+  --     vim.g.gruvbox_material_enable_italic = false
+  --     -- vim.cmd.colorscheme('gruvbox-material')
+  --   end,
+  -- },
 
-  {
-    "https://codeberg.org/evergarden/nvim.git",
-    name = "evergarden",
-    opts = {
-      theme = {
-        variant = "winter", -- 'winter'|'fall'|'spring'|'summer'
-      },
-      editor = {
-        transparent_background = false,
-        -- sign = { color = "none" },
-        -- float = {
-        --   color = "mantle",
-        --   solid_border = false,
-        -- },
-        -- completion = {
-        --   color = "surface0",
-        -- },
-      },
-    },
-  },
+  -- {
+  --   "https://codeberg.org/evergarden/nvim.git",
+  --   name = "evergarden",
+  --   opts = {
+  --     theme = {
+  --       variant = "winter", -- 'winter'|'fall'|'spring'|'summer'
+  --     },
+  --     editor = {
+  --       transparent_background = false,
+  --       -- sign = { color = "none" },
+  --       -- float = {
+  --       --   color = "mantle",
+  --       --   solid_border = false,
+  --       -- },
+  --       -- completion = {
+  --       --   color = "surface0",
+  --       -- },
+  --     },
+  --   },
+  -- },
   {
     "yonatan-perel/lake-dweller.nvim",
     lazy = false,
     priority = 1000,
+    opts = {
+      italics = false,
+    },
   },
   {
     "LazyVim/LazyVim",

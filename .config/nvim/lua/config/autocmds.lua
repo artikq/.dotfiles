@@ -38,20 +38,20 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 -- NOTE: Snacks `notifier` will override `vim.notify`
-local notify = vim.notify
-vim.notify = function(msg, lvl, opts) ---@diagnostic disable-line
-  if msg:match("^Terminal exited with code") then
-    return
-  end
-  notify(msg, lvl, opts)
-end
-vim.api.nvim_create_autocmd("TermClose", {
-  group = vim.api.nvim_create_augroup("term_autoclose", { clear = true }),
-  callback = function()
-    if vim.v.event.status ~= 0 then
-      vim.schedule(function()
-        vim.api.nvim_input("<CR>")
-      end)
-    end
-  end,
-})
+-- local notify = vim.notify
+-- vim.notify = function(msg, lvl, opts) ---@diagnostic disable-line
+--   if msg:match("^Terminal exited with code") then
+--     return
+--   end
+--   notify(msg, lvl, opts)
+-- end
+-- vim.api.nvim_create_autocmd("TermClose", {
+--   group = vim.api.nvim_create_augroup("term_autoclose", { clear = true }),
+--   callback = function()
+--     if vim.v.event.status ~= 0 then
+--       vim.schedule(function()
+--         vim.api.nvim_input("<CR>")
+--       end)
+--     end
+--   end,
+-- })

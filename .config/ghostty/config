@@ -10,3 +10,8 @@ cursor-text = #000000
 cursor-style-blink=false
 keybind = shift+enter=text:\x1b\r
 macos-option-as-alt=true
+font-family = "Lilex Nerd Font Mono Bold"
+font-family-bold = "Lilex Nerd Font Mono Bold"
+font-feature = -calt
+font-feature = -liga
+font-feature = -dlig

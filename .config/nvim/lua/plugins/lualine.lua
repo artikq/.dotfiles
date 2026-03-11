@@ -8,8 +8,8 @@ return {
       "folke/snacks.nvim",
     },
     init = function()
-      vim.g.tpipeline_autoembed = 1
-      vim.g.tpipeline_clearstl = 1
+      vim.g.tpipeline_autoembed = 0
+      vim.g.tpipeline_clearstl = 0
       vim.g.tpipeline_cursormoved = 0
     end,
   },
@@ -18,65 +18,68 @@ return {
     "nvim-lualine/lualine.nvim",
     event = "VeryLazy",
     enabled = true,
-    opts = {
-      options = {
-        icons_enabled = true,
-        component_separators = "|",
-        section_separators = "",
-        disabled_filetypes = { statusline = { "dashboard", "alpha", "ministarter", "snacks_dashboard", "minifiles" } },
-      },
-      sections = {
-        lualine_a = {
-          {
-            "filename",
-            file_status = true,
-          },
+    opts = function()
+      return {
+        options = {
+          icons_enabled = true,
+          component_separators = "|",
+          section_separators = "",
+          disabled_filetypes = { statusline = { "dashboard", "alpha", "ministarter", "snacks_dashboard", "minifiles" } },
+          theme = require("lualine.themes.lake-dweller"),
         },
-        lualine_b = { "diagnostics" },
-        lualine_c = {},
+        sections = {
+          lualine_a = {
+            {
+              "filename",
+              file_status = true,
+            },
+          },
+          lualine_b = { "diagnostics" },
+          lualine_c = {},
 
-        lualine_x = {
-          {
-            function()
-              local pattern = vim.fn.getreg("/")
-              if pattern == "" then
-                return ""
-              end
-              local count = vim.fn.searchcount({ maxcount = 999 })
-              if count.total and count.total > 0 then
-                return "/" .. pattern .. " [" .. count.current .. "/" .. count.total .. "]"
-              end
-              return "/" .. pattern
-            end,
-            cond = function()
-              return vim.v.hlsearch == 1
-            end,
-            color = { fg = "#ff9e64" },
-          },
+          lualine_x = {
+            {
+              function()
+                local pattern = vim.fn.getreg("/")
+                if pattern == "" then
+                  return ""
+                end
+                local count = vim.fn.searchcount({ maxcount = 999 })
+                if count.total and count.total > 0 then
+                  return "/" .. pattern .. " [" .. count.current .. "/" .. count.total .. "]"
+                end
+                return "/" .. pattern
+              end,
+              cond = function()
+                return vim.v.hlsearch == 1
+              end,
+              color = { fg = "#ff9e64" },
+            },
 
-          -- Snacks.profiler.status(),
-          {
-            function()
-              return "  " .. require("dap").status()
-            end,
-            cond = function()
-              return package.loaded["dap"] and require("dap").status() ~= ""
-            end,
-            color = function()
-              return { fg = Snacks.util.color("Debug") }
-            end,
+            -- Snacks.profiler.status(),
+            {
+              function()
+                return "  " .. require("dap").status()
+              end,
+              cond = function()
+                return package.loaded["dap"] and require("dap").status() ~= ""
+              end,
+              color = function()
+                return { fg = Snacks.util.color("Debug") }
+              end,
+            },
+          },
+          lualine_y = {},
+          lualine_z = {
+            {
+              "datetime",
+              -- options: default, us, uk, iso, or your own format string ("%H:%M", etc..)
+              style = "%H:%M",
+            },
           },
         },
-        lualine_y = {},
-        lualine_z = {
-          {
-            "datetime",
-            -- options: default, us, uk, iso, or your own format string ("%H:%M", etc..)
-            style = "%H:%M",
-          },
-        },
-      },
-    },
+      }
+    end,
     -- opts = function()
     --   local lualine_require = require("lualine_require")
     --   lualine_require.require = require

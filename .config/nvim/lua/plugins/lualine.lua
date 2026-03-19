@@ -40,6 +40,16 @@ return {
           lualine_x = {
             {
               function()
+                local reg = vim.fn.reg_recording()
+                return "recording @" .. reg
+              end,
+              cond = function()
+                return vim.fn.reg_recording() ~= ""
+              end,
+              color = { fg = "#ff6666" },
+            },
+            {
+              function()
                 local pattern = vim.fn.getreg("/")
                 if pattern == "" then
                   return ""

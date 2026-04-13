@@ -72,6 +72,8 @@ source $ZSH/oh-my-zsh.sh
 export fdie() { ps aux | grep $1 | awk '{print $2}' | xargs kill -9 ;  };
 alias die="fdie"
 
+dieport() { lsof -ti :$1 | xargs kill -9 2>/dev/null && echo "Killed all on port $1" || echo "Nothing on port $1"; }
+
 alias v="nvim"
 
 eval "$(direnv hook zsh)"

@@ -16,4 +16,5 @@ export TESTCONTAINERS_CHECKS_DISABLE=true
 # Paths
 export PATH="$PATH:$HOME/go/bin"
 export PATH="$(brew --prefix)/opt/libpq/bin:$PATH"
-export PATH="$(brew --prefix)/opt/openjdk/bin:$PATH"
+export PATH="$(brew --prefix)/opt/openjdk@21/bin:$PATH"
+export JAVA_HOME="$(brew --prefix)/opt/openjdk@21/libexec/openjdk.jdk/Contents/Home"

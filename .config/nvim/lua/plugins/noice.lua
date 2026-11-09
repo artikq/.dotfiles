@@ -4,6 +4,12 @@ return {
     opts = {
       cmdline = {
         view = "cmdline",
+        format = {
+          -- Noice only uses this for cosmetic highlighting of `:` commands.
+          -- Keeping it disabled avoids vim parser/query mismatches after
+          -- Neovim upgrades; regular buffer Treesitter remains enabled.
+          cmdline = { lang = false },
+        },
       },
       routes = {
         -- Skip ALL informational messages (write confirmations, undo messages, etc.)

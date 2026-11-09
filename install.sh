@@ -24,6 +24,13 @@ Darwin)
     eval "$(/opt/homebrew/bin/brew shellenv)"
   fi
   "$DOTFILES_DIR/macos/brew.sh"
+
+  echo "Installing Node LTS..."
+  export NVM_DIR="$HOME/.nvm"
+  mkdir -p "$NVM_DIR"
+  . "$(brew --prefix)/opt/nvm/nvm.sh"
+  nvm install --lts
+  nvm alias default 'lts/*'
   "$DOTFILES_DIR/macos/setup.sh"
   "$DOTFILES_DIR/macos/init.sh"
   ;;

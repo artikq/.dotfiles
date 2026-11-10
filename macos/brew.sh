@@ -60,7 +60,9 @@ brew install zsh-vi-mode
 
 echo "Installing casks..."
 # Casks
+brew install --cask amneziavpn
 brew install --cask betterdisplay
+brew install --cask claude
 brew install --cask dbeaver-community
 brew install --cask flutter
 brew install --cask font-fira-code-nerd-font
@@ -72,3 +74,5 @@ brew install --cask podman-desktop
 brew install --cask slack
 brew install --cask spotify
 brew install --cask telegram
+brew install --cask zen
+brew install --cask zoom

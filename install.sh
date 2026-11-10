@@ -91,4 +91,21 @@ EOF
 
 "$DOTFILES_DIR/stowme.sh" $ADOPT
 
+echo "Installing shell and dev tools..."
+# After stow so the installer keeps the stowed .zshrc
+[ -d "$HOME/.oh-my-zsh" ] ||
+  RUNZSH=no CHSH=no KEEP_ZSHRC=yes sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+[ -d "$HOME/.tmux/plugins/tpm" ] || git clone https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm"
+"$HOME/.tmux/plugins/tpm/bin/install_plugins"
+
+command -v claude &>/dev/null || curl -fsSL https://claude.ai/install.sh | bash
+
+go install golang.org/x/tools/gopls@latest
+go install honnef.co/go/tools/cmd/staticcheck@latest
+
+uv tool install qmk
+uv tool install specify-cli
+pipx install ubi-reader
+
 echo "Done!"

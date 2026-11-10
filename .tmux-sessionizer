@@ -1,0 +1,2 @@
+tmux send-keys -t "$(tmux new-window -d -P -F '#{pane_id}' -c "$PWD")" claude Enter
+clear

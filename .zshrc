@@ -75,6 +75,9 @@ alias die="fdie"
 dieport() { lsof -ti :$1 | xargs kill -9 2>/dev/null && echo "Killed all on port $1" || echo "Nothing on port $1"; }
 
 alias v="nvim"
+alias ls="eza --icons=auto --group-directories-first"
+alias ll="eza -la --icons=auto --group-directories-first --git"
+alias lt="eza --tree --level=2 --icons=auto --git-ignore"
 
 eval "$(direnv hook zsh)"
 eval "$(zoxide init zsh)"

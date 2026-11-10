@@ -25,10 +25,11 @@
     ],
     "Notification": [
       {
+        "matcher": "permission_prompt|elicitation_dialog",
         "hooks": [
           {
             "type": "command",
-            "command": "[ -n \"$TMUX_PANE\" ] && printf '\\a' > \"$(tmux display -p -t \"$TMUX_PANE\" '#{pane_tty}')\"; exit 0"
+            "command": "msg=$(jq -r \".message // \\\"Claude needs your attention\\\"\"); [ -n \"$TMUX_PANE\" ] && tty=$(tmux display -p -t \"$TMUX_PANE\" '#{pane_tty}') && printf '\\ePtmux;\\e\\e]777;notify;Claude Code;%s\\a\\e\\\\' \"$msg\" > \"$tty\" && printf '\\a' > \"$tty\"; exit 0"
           }
         ]
       }

@@ -91,6 +91,16 @@ EOF
 
 "$DOTFILES_DIR/stowme.sh" $ADOPT
 
+echo "Copying Claude Code settings..."
+# Copied, not stowed: ~/.claude/settings.json also holds work settings, so only our keys are merged in
+mkdir -p "$HOME/.claude"
+cp "$DOTFILES_DIR/claude/statusline.sh" "$HOME/.claude/statusline.sh"
+chmod +x "$HOME/.claude/statusline.sh"
+CLAUDE_SETTINGS="$HOME/.claude/settings.json"
+[ -f "$CLAUDE_SETTINGS" ] || echo '{}' >"$CLAUDE_SETTINGS"
+jq -s '.[0] * .[1]' "$CLAUDE_SETTINGS" "$DOTFILES_DIR/claude/settings.json" >"$CLAUDE_SETTINGS.tmp" &&
+  mv "$CLAUDE_SETTINGS.tmp" "$CLAUDE_SETTINGS"
+
 echo "Installing shell and dev tools..."
 # After stow so the installer keeps the stowed .zshrc
 [ -d "$HOME/.oh-my-zsh" ] ||

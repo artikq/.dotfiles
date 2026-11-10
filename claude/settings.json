@@ -1,0 +1,37 @@
+{
+  "env": {
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "~/.claude/statusline.sh",
+    "padding": 1
+  },
+  "tui": "default",
+  "editorMode": "vim",
+  "preferredNotifChannel": "auto",
+  "promptSuggestionEnabled": false,
+  "teammateMode": "auto",
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "[ -n \"$TMUX_PANE\" ] && printf '\\a' > \"$(tmux display -p -t \"$TMUX_PANE\" '#{pane_tty}')\"; exit 0"
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "[ -n \"$TMUX_PANE\" ] && printf '\\a' > \"$(tmux display -p -t \"$TMUX_PANE\" '#{pane_tty}')\"; exit 0"
+          }
+        ]
+      }
+    ]
+  }
+}

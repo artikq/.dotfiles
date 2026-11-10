@@ -19,6 +19,7 @@ _darcs
 ^/install\.sh
 ^/brew
 ^/charybdis\.layout\.json
+^/claude
 ^/\.stow-local-ignore
 ^/macos
 ^/vendor

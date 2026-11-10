@@ -48,6 +48,10 @@ defaults write com.apple.finder FXPreferredViewStyle -string "icnv"
 defaults write com.apple.finder ShowStatusBar -bool true
 defaults write com.apple.finder ShowHardDrivesOnDesktop -bool true
 
+# No screensaver; never sleep on charger, battery keeps macOS defaults
+defaults -currentHost write com.apple.screensaver idleTime -int 0
+sudo pmset -c sleep 0 displaysleep 0 disksleep 0 standby 0 powernap 0
+
 # Screenshots go to clipboard
 defaults write com.apple.screencapture target -string clipboard
 

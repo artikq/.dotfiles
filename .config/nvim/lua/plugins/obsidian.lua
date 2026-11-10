@@ -1,9 +1,23 @@
+local workspaces = {
+  { name = "personal-notes-tools", path = "~/dev/tools/personal" },
+  { name = "dev-notes-tools", path = "~/dev/tools/notes" },
+}
+
+-- load only inside vaults, otherwise it warns on every markdown file outside them
+local events = {}
+for _, ws in ipairs(workspaces) do
+  local pattern = vim.fn.expand(ws.path) .. "/*.md"
+  table.insert(events, "BufReadPre " .. pattern)
+  table.insert(events, "BufNewFile " .. pattern)
+end
+
 return {
   {
     "obsidian-nvim/obsidian.nvim",
     version = "*",
     lazy = true,
-    ft = "markdown",
+    event = events,
+    cmd = "Obsidian",
     dependencies = {
       "nvim-lua/plenary.nvim",
     },
@@ -11,16 +25,7 @@ return {
     ---@type obsidian.config
     opts = {
       legacy_commands = false,
-      workspaces = {
-        {
-          name = "personal-notes-tools",
-          path = "~/dev/tools/personal",
-        },
-        {
-          name = "dev-notes-tools",
-          path = "~/dev/tools/notes",
-        },
-      },
+      workspaces = workspaces,
       frontmatter = {
         enabled = false,
       },
